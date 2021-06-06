@@ -1,13 +1,103 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Label.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/PlayerController.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Platforms.gd" type="Script" id=2]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="QuadMesh" id=1]
 
-[node name="Label" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
-script = ExtResource( 1 )
+[sub_resource type="PhysicsMaterial" id=7]
+friction = 5.0
+
+[sub_resource type="QuadMesh" id=2]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 0.500665, 0.512342 )
+
+[sub_resource type="PhysicsMaterial" id=8]
+friction = 5.0
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 40.0234, 2.51563 )
+
+[sub_resource type="PhysicsMaterial" id=6]
+friction = 5.0
+
+[sub_resource type="QuadMesh" id=4]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 4.01563, 6.03125 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 3.94758, 1.12535 )
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Background" type="MeshInstance2D" parent="."]
+modulate = Color( 0.337255, 0.34902, 0.32549, 1 )
+position = Vector2( 160.198, 89.8016 )
+scale = Vector2( 320, 180 )
+mesh = SubResource( 1 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
+
+[node name="Platforms" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="Ground" type="StaticBody2D" parent="Platforms"]
+position = Vector2( 159.823, 175.177 )
+physics_material_override = SubResource( 7 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Platforms/Ground"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 320, 10 )
+mesh = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ground"]
+scale = Vector2( 320, 10 )
+shape = SubResource( 3 )
+
+[node name="firstPlatform" type="StaticBody2D" parent="Platforms"]
+position = Vector2( 40, 130 )
+physics_material_override = SubResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Platforms/firstPlatform"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 80, 5 )
+mesh = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/firstPlatform"]
+shape = SubResource( 10 )
+
+[node name="Player" type="RigidBody2D" parent="."]
+position = Vector2( 120, 160 )
+mode = 2
+physics_material_override = SubResource( 6 )
+script = ExtResource( 1 )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Player"]
+scale = Vector2( 8, 12 )
+mesh = SubResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="GroundCheck" type="Area2D" parent="Player"]
+
+[node name="GroundCheck" type="CollisionShape2D" parent="Player/GroundCheck"]
+position = Vector2( 0, 5.6 )
+shape = SubResource( 9 )
+
+[connection signal="body_entered" from="Player/GroundCheck" to="Platforms" method="_on_GroundCheck_body_entered"]
