@@ -1,24 +1,28 @@
 extends KinematicBody2D
 
-var linear_velocity = Vector2.ZERO
-var speed = 500
+var velocity = Vector2.ZERO
+var inputRun
 
-func _process(delta):
+const ACCELERATION = 2000
+const MAX_SPEED = 30000
+const PLAYER_FRICTION = 1000
+
+func _physics_process(delta):
 	
-	var inputRun = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	inputRun = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	
-	if inputRun > 0 :
-		linear_velocity.x += speed * delta
-		move_and_slide(linear_velocity, Vector2(0,-1))
-	
-	elif inputRun < 0 :
-		linear_velocity.x -= speed * delta
-		move_and_slide(linear_velocity, Vector2(0,-1))
-	
+	if inputRun != 0 :
+		velocity.x += inputRun * ACCELERATION * delta
+		velocity = velocity.clamped(MAX_SPEED * delta)
+		move_and_slide(velocity, Vector2(0,-1))
+		
 	else :
-		linear_velocity = Vector2.ZERO
+		velocity = velocity.move_toward(Vector2.ZERO, PLAYER_FRICTION * delta)
 	
-	print(inputRun)
+	## DEBUGGING FUNCS
+	
+	if velocity.x != 0:
+		print(velocity.x)
 
 # func _ready():
 
