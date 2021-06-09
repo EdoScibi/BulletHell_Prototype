@@ -1,26 +1,62 @@
 extends KinematicBody2D
 
-var velocity = Vector2.ZERO
-var inputRun
+const ROTATION = 0
+const ACCELERATION = 25
+const MAX_SPEED = 300
+const PLAYER_FRICTION = 20
+const GRAVITY = 10
+const JUMP_SPEED = -1000
 
-const ACCELERATION = 2000
-const MAX_SPEED = 30000
-const PLAYER_FRICTION = 1000
+var velocity = Vector2.ZERO
+var gravity_Vector = Vector2(velocity.x,GRAVITY)
+var inputRun
+var jumping = false
 
 func _physics_process(delta):
 	
-	inputRun = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	#FREEZE ROTATION
+	rotation = ROTATION
 	
+	#APPLY GRAVITY
+	move_and_collide(gravity_Vector)
+	
+	#GET INPUTS
+	inputRun = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	var jump = Input.is_action_just_pressed("ui_accept")
+	
+	#MOVEMENT
 	if inputRun != 0 :
-		velocity.x += inputRun * ACCELERATION * delta
-		velocity = velocity.clamped(MAX_SPEED * delta)
-		move_and_slide(velocity, Vector2(0,-1))
+		velocity.x += inputRun * ACCELERATION
+		velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
 		
+		#IL SEGUENTE METODO AGGIORNA IL VETTORE DEL MOVIMENTO OGNI FRAME DI INPUT, QUINDI LA VELOCITA' SULL'ASSE Y
+		#NON CAMBIA PIU' (e.g. caduta o fase di ascesa del salto)
+		#velocity = velocity.move_toward(Vector2(inputRun * MAX_SPEED, velocity.y), ACCELERATION)
+		
+		#IL SEGUENTE METODO ALTERNATIVO HA IL PROBLEMA CHE VECTOR2D.CLAMPED METTE UN CAP ALLA LUNGHEZZA FINALE DEL VETTORE
+		#PER CUI ALLA SOMMA VETTORIALE AGGIUNGE ANCHE IL FATTORE Y, E IL RISULTATO CREA STRANI COMPORTAMENTI (e.g. in caduta)
+		#velocity.x += inputRun * ACCELERATION
+		#velocity = velocity.clamped(MAX_SPEED)
+	
 	else :
-		velocity = velocity.move_toward(Vector2.ZERO, PLAYER_FRICTION * delta)
+		velocity = velocity.move_toward(Vector2.ZERO, PLAYER_FRICTION)
+		
+	#JUMPING
+	if jump and is_on_floor() :
+		jumping = true
+		velocity.y = JUMP_SPEED
+	if jumping and is_on_floor() :
+		jumping = false
+	
+	#AIR CONTROL
+	if jumping:
+		inputRun = inputRun.clamp(inputRun, -0.5, 0.5)
+	
+	#MOVEMENT RESULT
+	velocity = move_and_slide(velocity, Vector2(0,-1))
+	
 	
 	## DEBUGGING FUNCS
-	
 	if velocity.x != 0:
 		print(velocity.x)
 
