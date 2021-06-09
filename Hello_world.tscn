@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://PlayerController2.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Platforms.gd" type="Script" id=2]
 [ext_resource path="res://Prova_Label.gd" type="Script" id=3]
 [ext_resource path="res://speedLabel.gd" type="Script" id=4]
+[ext_resource path="res://isJumpingLabel.gd" type="Script" id=5]
 
 [sub_resource type="QuadMesh" id=1]
 
@@ -113,6 +114,16 @@ margin_top = 50.0
 margin_right = 170.0
 margin_bottom = 50.0
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="isJumping" type="Label" parent="."]
+margin_left = 31.1132
+margin_top = 41.2039
+margin_right = 71.1132
+margin_bottom = 55.2039
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -21,7 +21,12 @@ func _physics_process(delta):
 	move_and_collide(gravity_Vector)
 	
 	#GET INPUTS
-	inputRun = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	#AIR CONTROL
+	if jumping == false :
+		inputRun = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	else :
+		inputRun = clamp(Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"), -0.5, 0.5)
+	
 	var jump = Input.is_action_just_pressed("ui_accept")
 	
 	#MOVEMENT
@@ -41,16 +46,13 @@ func _physics_process(delta):
 	else :
 		velocity = velocity.move_toward(Vector2.ZERO, PLAYER_FRICTION)
 		
+
 	#JUMPING
 	if jump and is_on_floor() :
 		jumping = true
 		velocity.y = JUMP_SPEED
 	if jumping and is_on_floor() :
 		jumping = false
-	
-	#AIR CONTROL
-	if jumping:
-		inputRun = inputRun.clamp(inputRun, -0.5, 0.5)
 	
 	#MOVEMENT RESULT
 	velocity = move_and_slide(velocity, Vector2(0,-1))
