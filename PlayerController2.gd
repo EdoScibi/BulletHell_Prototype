@@ -8,7 +8,7 @@ const GRAVITY = 10
 const JUMP_SPEED = -1000
 
 var velocity = Vector2.ZERO
-var gravity_Vector = Vector2(velocity.x,GRAVITY)
+var gravity_Vector = Vector2(0,GRAVITY)
 var inputRun
 var jumping = false
 
@@ -27,7 +27,6 @@ func _physics_process(delta):
 	else :
 		inputRun = clamp(Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"), -0.5, 0.5)
 	
-	var jump = Input.is_action_just_pressed("ui_accept")
 	
 	#MOVEMENT
 	if inputRun != 0 :
@@ -45,17 +44,21 @@ func _physics_process(delta):
 	
 	else :
 		velocity = velocity.move_toward(Vector2.ZERO, PLAYER_FRICTION)
-		
 
+	#MOVEMENT RESULT
+	velocity = move_and_slide(velocity, Vector2(0,-1))
+	
+	
+func _process(delta):
+	
+	var jump = Input.is_action_just_pressed("ui_accept")
+	
 	#JUMPING
 	if jump and is_on_floor() :
 		jumping = true
 		velocity.y = JUMP_SPEED
 	if jumping and is_on_floor() :
 		jumping = false
-	
-	#MOVEMENT RESULT
-	velocity = move_and_slide(velocity, Vector2(0,-1))
 	
 	
 	## DEBUGGING FUNCS
@@ -69,7 +72,7 @@ func _physics_process(delta):
 #	$GroundCheck.connect("body_entered", self, "_on_GroundCheck_body_entered")
 #	$GroundCheck.connect("body_exited", self, "_on_GroundCheck_body_exited")
 
-#func _physics_process(delta):
+
 
 #Ground Check
 #func _on_GroundCheck_body_entered(body):
