@@ -1,51 +1,31 @@
-<<<<<<< Updated upstream
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Scripts/PlayerController.gd" type="Script" id=1]
+[ext_resource path="res://PlayerController2.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Platforms.gd" type="Script" id=2]
-=======
-[gd_scene load_steps=16 format=2]
-
-[ext_resource path="res://Scripts/PlayerController2.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Platforms.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Prova_Label.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/speedLabel.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/isJumpingLabel.gd" type="Script" id=5]
-[ext_resource path="res://Prefabs/Enemy.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scripts/EnemySpawner.gd" type="Script" id=7]
->>>>>>> Stashed changes
+[ext_resource path="res://Prova_Label.gd" type="Script" id=3]
+[ext_resource path="res://speedLabel.gd" type="Script" id=4]
+[ext_resource path="res://isJumpingLabel.gd" type="Script" id=5]
 
 [sub_resource type="QuadMesh" id=1]
 
-[sub_resource type="PhysicsMaterial" id=7]
+[sub_resource type="PhysicsMaterial" id=2]
 friction = 5.0
 
-[sub_resource type="QuadMesh" id=2]
+[sub_resource type="QuadMesh" id=3]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 0.500665, 0.512342 )
 
-[sub_resource type="PhysicsMaterial" id=8]
+[sub_resource type="PhysicsMaterial" id=5]
 friction = 5.0
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 40.0234, 2.51563 )
 
-[sub_resource type="PhysicsMaterial" id=6]
-friction = 5.0
+[sub_resource type="QuadMesh" id=7]
 
-[sub_resource type="QuadMesh" id=4]
-
-<<<<<<< Updated upstream
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 4.01563, 6.03125 )
-=======
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 4.03138, 6.03173 )
->>>>>>> Stashed changes
-
-[sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 3.94758, 1.12535 )
+extents = Vector2( 4.01563, 6.03125 )
 
 [node name="MainScene" type="Node2D"]
 
@@ -63,7 +43,7 @@ script = ExtResource( 2 )
 
 [node name="Ground" type="StaticBody2D" parent="Platforms"]
 position = Vector2( 159.823, 175.177 )
-physics_material_override = SubResource( 7 )
+physics_material_override = SubResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -71,15 +51,15 @@ __meta__ = {
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platforms/Ground"]
 modulate = Color( 0, 0, 0, 1 )
 scale = Vector2( 320, 10 )
-mesh = SubResource( 2 )
+mesh = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ground"]
 scale = Vector2( 320, 10 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="firstPlatform" type="StaticBody2D" parent="Platforms"]
 position = Vector2( 40, 130 )
-physics_material_override = SubResource( 8 )
+physics_material_override = SubResource( 5 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -87,47 +67,48 @@ __meta__ = {
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platforms/firstPlatform"]
 modulate = Color( 0, 0, 0, 1 )
 scale = Vector2( 80, 5 )
-mesh = SubResource( 2 )
+mesh = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/firstPlatform"]
-shape = SubResource( 10 )
+shape = SubResource( 6 )
 
-<<<<<<< Updated upstream
-[node name="Player" type="RigidBody2D" parent="."]
-position = Vector2( 120, 160 )
-mode = 2
-physics_material_override = SubResource( 6 )
-=======
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 123.526, 99.553 )
->>>>>>> Stashed changes
+position = Vector2( 120, 100 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Player"]
 scale = Vector2( 8, 12 )
-mesh = SubResource( 4 )
+mesh = SubResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource( 5 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="GroundCheck" type="Area2D" parent="Player"]
+[node name="Input" type="Label" parent="."]
+margin_left = 250.565
+margin_top = 50.0
+margin_right = 270.0
+margin_bottom = 50.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="GroundCheck" type="CollisionShape2D" parent="Player/GroundCheck"]
-position = Vector2( 0, 5.6 )
-shape = SubResource( 9 )
+[node name="Speed" type="Label" parent="."]
+margin_left = 150.0
+margin_top = 50.0
+margin_right = 170.0
+margin_bottom = 50.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-<<<<<<< Updated upstream
-[connection signal="body_entered" from="Player/GroundCheck" to="Platforms" method="_on_GroundCheck_body_entered"]
-=======
 [node name="isJumping" type="Label" parent="."]
 margin_left = 31.1132
 margin_top = 41.2039
@@ -137,8 +118,3 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="EnemySpawner" type="Node" parent="."]
-script = ExtResource( 7 )
-enemy_prefab = ExtResource( 6 )
->>>>>>> Stashed changes
