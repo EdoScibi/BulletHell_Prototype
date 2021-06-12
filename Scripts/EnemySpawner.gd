@@ -2,12 +2,17 @@ extends Node
 
 export(PackedScene) var enemy_prefab = null
 
+export var timeToNextSpawn = 2
 
-# Called when the node enters the scene tree for the first time.
+var screen_viewport = get_viewport().get_visible_rect().size
+
+onready var timer = get_node("SpawnerTimer")
+
 func _ready():
-	pass # Replace with function body.
+	
+	timer.start(timeToNextSpawn)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if timer.time_left == 0 :
+		var enemy = enemy_prefab.instance()
+		add_child(enemy)
