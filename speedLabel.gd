@@ -6,7 +6,7 @@ func _ready():
 	
 	align = 1
 
-func _process(delta):
+func _process(_delta):
 	
 	playerSpeed = str(get_node("../Player").velocity.x)
 

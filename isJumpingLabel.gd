@@ -6,8 +6,8 @@ func _ready():
 	
 	align = 1
 
-func _process(delta):
+func _process(_delta):
 	
-	isJumping = str(get_node("../Player").jumping)
+	isJumping = str(get_node("../Player").is_jumping)
 
 	text = "Jumping" + "\n" + isJumping
