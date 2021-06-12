@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="SphereMesh" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 2.10239
+
+[node name="Enemy" type="KinematicBody2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2( 2, 2 )
+mesh = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
