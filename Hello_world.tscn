@@ -5,8 +5,8 @@
 [ext_resource path="res://Prova_Label.gd" type="Script" id=3]
 [ext_resource path="res://speedLabel.gd" type="Script" id=4]
 [ext_resource path="res://isJumpingLabel.gd" type="Script" id=5]
-[ext_resource path="res://Prefabs/Enemy.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scripts/EnemySpawner.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/SpawnerTimer.gd" type="Script" id=6]
+[ext_resource path="res://Prefabs/Enemy.tscn" type="PackedScene" id=7]
 
 [sub_resource type="QuadMesh" id=1]
 
@@ -121,8 +121,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EnemySpawner" type="Node2D" parent="."]
-script = ExtResource( 7 )
-enemy_prefab = ExtResource( 6 )
-
-[node name="SpawnerTimer" type="Timer" parent="EnemySpawner"]
+[node name="SpawnerTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+script = ExtResource( 6 )
+enemy_prefab = ExtResource( 7 )
