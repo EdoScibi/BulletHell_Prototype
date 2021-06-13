@@ -4,8 +4,6 @@ export(PackedScene) var enemy_prefab = null
 
 export var timeToNextSpawn = 2
 
-var screen_viewport = get_viewport().get_visible_rect().size
-
 onready var timer = get_node("SpawnerTimer")
 
 func _ready():
