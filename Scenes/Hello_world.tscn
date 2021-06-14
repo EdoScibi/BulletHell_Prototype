@@ -1,12 +1,11 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://PlayerController2.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Platforms.gd" type="Script" id=2]
-[ext_resource path="res://Prova_Label.gd" type="Script" id=3]
-[ext_resource path="res://speedLabel.gd" type="Script" id=4]
-[ext_resource path="res://isJumpingLabel.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/speedLabel.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/PlayerController2.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Platforms.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/isJumpingLabel.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/SpawnerTimer.gd" type="Script" id=6]
-[ext_resource path="res://Prefabs/Enemy.tscn" type="PackedScene" id=7]
 
 [sub_resource type="QuadMesh" id=1]
 
@@ -29,6 +28,22 @@ extents = Vector2( 40.0234, 2.51563 )
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 4.01563, 6.03125 )
 
+[sub_resource type="GDScript" id=9]
+script/source = "extends Label
+
+var playerInput
+
+func _ready():
+	
+	align = 1
+
+func _process(_delta):
+	
+	playerInput = str(get_node(\"../Player\").horizontal_input)
+
+	text = \"R/L Input\" + \"\\n\" + playerInput
+"
+
 [node name="MainScene" type="Node2D"]
 
 [node name="Background" type="MeshInstance2D" parent="."]
@@ -41,7 +56,7 @@ __meta__ = {
 }
 
 [node name="Platforms" type="Node2D" parent="."]
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="Ground" type="StaticBody2D" parent="Platforms"]
 position = Vector2( 159.823, 175.177 )
@@ -78,7 +93,7 @@ shape = SubResource( 6 )
 position = Vector2( 120, 100 )
 collision_layer = 3
 collision_mask = 15
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Player"]
 scale = Vector2( 8, 12 )
@@ -98,7 +113,7 @@ margin_left = 250.565
 margin_top = 50.0
 margin_right = 270.0
 margin_bottom = 50.0
-script = ExtResource( 3 )
+script = SubResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -108,7 +123,7 @@ margin_left = 150.0
 margin_top = 50.0
 margin_right = 170.0
 margin_bottom = 50.0
-script = ExtResource( 4 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -118,7 +133,7 @@ margin_left = 31.1132
 margin_top = 41.2039
 margin_right = 71.1132
 margin_bottom = 55.2039
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -128,4 +143,4 @@ wait_time = 0.5
 one_shot = true
 autostart = true
 script = ExtResource( 6 )
-enemy_prefab = ExtResource( 7 )
+enemy_prefab = ExtResource( 5 )
