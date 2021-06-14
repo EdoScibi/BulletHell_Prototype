@@ -1,15 +1,15 @@
 extends Area2D
 
-const speed = 100
+const speed = 200
 var direction = Vector2(rand_range(-0.25,0.25),rand_range(0.35,1))
 onready var mainScene = get_node("..")
 
 
 func _ready():
 	self.connect("body_entered", self, "self_destroy")
-	var viewportX = mainScene.get_viewport().get_visible_rect().size.x
+	var viewport_width = mainScene.get_viewport().get_visible_rect().size.x
 	
-	transform.origin = Vector2(rand_range(0, viewportX), 0)
+	transform.origin = Vector2(rand_range(0, viewport_width), 0)
 	print("spawning at " , transform.origin.round())
 
 
@@ -18,6 +18,6 @@ func self_destroy(body) :
 	#print("bye")
 
 
-func _process(delta):
-	var final_vector = direction * speed * delta
-	translate(final_vector.normalized())
+func _physics_process(delta):
+	var final_vector = direction.normalized() * speed * delta
+	translate(final_vector)
