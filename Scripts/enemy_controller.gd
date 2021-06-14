@@ -1,28 +1,23 @@
 extends Area2D
 
-var speed = 50
-var direction = Vector2(1,1)
-#var collider
+const speed = 100
+var direction = Vector2(rand_range(-0.25,0.25),rand_range(0.35,1))
+onready var mainScene = get_node("..")
+
 
 func _ready():
 	self.connect("body_entered", self, "self_destroy")
+	var viewportX = mainScene.get_viewport().get_visible_rect().size.x
+	
+	transform.origin = Vector2(rand_range(0, viewportX), 0)
+	print("spawning at " , transform.origin.round())
 
 
 func self_destroy(body) :
-	print("bye")
 	self.queue_free()
+	#print("bye")
 
 
 func _process(delta):
 	var final_vector = direction * speed * delta
-	translate(final_vector)
-	
-	
-#	collider = move_and_collide(final_vector * delta)
-#	if collider != null :
-#		self.queue_free()
-
-
-#func _on_Enemy_body_entered(body):
-#	print("bye")
-#	self.queue_free()
+	translate(final_vector.normalized())

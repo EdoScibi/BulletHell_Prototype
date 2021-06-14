@@ -6,7 +6,6 @@ export(PackedScene) var enemy_prefab
 func _process(delta):
 	spawn_Enemy()
 
-
 func spawn_Enemy() :
 	if is_stopped() :
 		print("spawning")
