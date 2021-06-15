@@ -21,6 +21,26 @@ Arrivato in cima dovrai affrontare un boss finale utilizzando i potenziamenti ra
 |   @      |
 ------------
 ```
+## Descrizioni specifiche
+
+### Il Personaggio
+...........
+
+### Piattaforme
+...........
+
+### Nemici e pericoli
+...........
+
+### Il Boss finale
+...........
+
+### PowerUps - Tipi, raccolta, gestione
+...........
+
+### Sistema punteggio
+Timed? Qual'è il game loop?
+
 
 ## Spunti e potenzialità
 - La tipologia di nemici o del livello suggerisce caratteristiche del boss finale.
