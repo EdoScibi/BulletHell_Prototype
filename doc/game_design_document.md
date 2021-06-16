@@ -43,15 +43,16 @@ Esistono diversi tipi di plat_unit:
 Durante l'intera scalata, il personaggio sarà bombardato da proiettili di vario tipo che pioveranno principalmente dall'alto. Alcune parti del livello e/o alcune trappole potrebbero far apparire proiettili dai lati dello schermo.
 
 Il gioco dovrebbe comprendere anche un vincolo al personaggio sulla velocità d'ascesa del livello. La telecamera si muove automaticamente verso l'alto, costringendolo a fuggire dal fondo?
-
+```
 |   ---   - |  
 |-- HELP!  -|  ^^
 |   -@--    |  ||
 |^^^^^^^^^^^|  ||
+```
+Quindi la telecamera _insegue_ il personaggio se supera il limite superiore della schermata, ma lo rincorre inesorabilmente se lui rallenta.
 
-- Trappole?
+- Trappole appiccicose?
 - Piattaforme spinate?
-
 
 ## Il Boss finale
 ...........
