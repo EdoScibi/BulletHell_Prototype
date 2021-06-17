@@ -23,14 +23,19 @@ Arrivato in cima dovrai affrontare un boss finale utilizzando i potenziamenti ra
 ------------
 ```
 ## Feeling generale e tematiche
-Creepy-toon? Ispirazione: _The Binding of Isaac_ o meglio ancora _Salad Fingers_?
-- Effetto di parallasse, [SUPER easy su Godot](https://docs.godotengine.org/it/stable/classes/class_parallaxbackground.htm)
-- Scegliere color palette
+Il livello principale del gioco è ambientato in uno scarico fognario. L'appeal del gioco si basa sul contrasto tra le meccaniche - si spera - coinvolgenti ed il setting disturbante e sgradevole.
+
+Il giocatore comanda uno scarafaggio ferito (gli mancano delle zampe?) che risale un tubo ricolmo delle peggiori nefandezze. Nel tubo si interagirà infatti con altri insetti, escrementi e altre schifezze inimmaginabili.
+
+## Assets
+Il gioco utilizza assets creati in pixel art.
+- Personaggio: 16x16 pixel
+- Piattaforme: 16x8? 16x16?
 
 # Descrizioni specifiche
 
 ## Il Personaggio
-...........
+Il personaggio è uno scarafaggio
 
 ## Piattaforme
 Le piattaforme sono composte da elementi quadrati chiamate plat_unit.
@@ -69,7 +74,7 @@ Quindi la telecamera _insegue_ il personaggio se supera il limite superiore dell
 ## Sistema punteggio
 Timed? Qual'è il game loop?
 
-
 ## Spunti e potenzialità
+- Effetto di parallasse, [SUPER easy su Godot](https://docs.godotengine.org/it/stable/classes/class_parallaxbackground.htm)
 - La tipologia di nemici o del livello suggerisce caratteristiche del boss finale.
 - Vari tipi di potenziamenti permettono di affrontare la scalata/boss in modi diversi, alcuni boss sono più facili con un determinato set di potenziamenti.
