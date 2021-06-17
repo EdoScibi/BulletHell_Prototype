@@ -8,7 +8,7 @@ func _process(delta):
 
 func spawn_Enemy() :
 	if is_stopped() :
-		print("spawning")
+		#print("spawning")
 		var enemy = enemy_prefab.instance()
 		add_child(enemy)
 		start()

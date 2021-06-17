@@ -7,7 +7,6 @@ export var timeToNextSpawn = 2
 onready var timer = get_node("SpawnerTimer")
 
 func _ready():
-	
 	timer.start(timeToNextSpawn)
 
 func _process(delta):

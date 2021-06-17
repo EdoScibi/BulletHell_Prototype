@@ -10,7 +10,7 @@ func _ready():
 	var viewport_width = mainScene.get_viewport().get_visible_rect().size.x
 	
 	transform.origin = Vector2(rand_range(0, viewport_width), 0)
-	print("spawning at " , transform.origin.round())
+	#print("spawning at " , transform.origin.round())
 
 
 func self_destroy(body) :
