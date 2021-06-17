@@ -13,11 +13,11 @@ var horizontal_input
 var is_jumping = false
 var jump_input
 var im_on_ground = false
-
+onready var GC_area = get_node("Ground_check_area")
 
 #Get GROUNDCHECK
 func im_on_ground() -> bool :
-	var on_ground = get_node("Ground_check_area").player_on_ground
+	var on_ground = GC_area.player_on_ground
 #	print(on_ground)
 	return on_ground
 

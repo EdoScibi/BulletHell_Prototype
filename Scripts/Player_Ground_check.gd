@@ -8,8 +8,8 @@ func _ready():
 
 func on_touch_down(ground) :
 	player_on_ground = true
-	print("player_on_ground=" , player_on_ground)
+#	print("player_on_ground=" , player_on_ground)
 
 func on_lift(ground) :
 	player_on_ground = false
-	print("player_on_ground=" , player_on_ground)
+#	print("player_on_ground=" , player_on_ground)
