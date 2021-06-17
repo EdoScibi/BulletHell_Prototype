@@ -25,6 +25,7 @@ Arrivato in cima dovrai affrontare un boss finale utilizzando i potenziamenti ra
 ## Feeling generale e tematiche
 Creepy-toon? Ispirazione: _The Binding of Isaac_ o meglio ancora _Salad Fingers_?
 - Effetto di parallasse, [SUPER easy su Godot](https://docs.godotengine.org/it/stable/classes/class_parallaxbackground.htm)
+- Scegliere color palette
 
 # Descrizioni specifiche
 
