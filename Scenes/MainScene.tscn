@@ -1,12 +1,12 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/speedLabel.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/PlayerController2.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/SpawnerTimer.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Platforms.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/isJumpingLabel.gd" type="Script" id=4]
-[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scripts/SpawnerTimer.gd" type="Script" id=6]
-[ext_resource path="res://Scripts/Player_Ground_check.gd" type="Script" id=7]
+[ext_resource path="res://Assets/tileset_test.tres" type="TileSet" id=5]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=7]
 
 [sub_resource type="QuadMesh" id=1]
 
@@ -24,16 +24,7 @@ friction = 5.0
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 40.0234, 2.51563 )
 
-[sub_resource type="QuadMesh" id=7]
-
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 4.01563, 6.03125 )
-
-[sub_resource type="CapsuleShape2D" id=10]
-radius = 3.9
-height = 2.45957
-
-[sub_resource type="GDScript" id=9]
+[sub_resource type="GDScript" id=10]
 script/source = "extends Label
 
 var playerInput
@@ -51,17 +42,29 @@ func _process(_delta):
 
 [node name="MainScene" type="Node2D"]
 
+[node name="Ground and Platforms" type="TileMap" parent="."]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 9
+collision_mask = 9
+format = 1
+tile_data = PoolIntArray( 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 0, 0, 196621, 0, 0, 327694, 0, 0, 327695, 0, 0, 327696, 0, 0, 327697, 0, 0, 327698, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655364, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 655369, 0, 0, 655370, 0, 0, 655371, 0, 0, 655372, 0, 0, 655373, 0, 0, 655374, 0, 0, 655375, 0, 0, 655376, 0, 0, 655377, 0, 0, 655378, 0, 0, 655379, 0, 0 )
+
 [node name="Background" type="MeshInstance2D" parent="."]
+visible = false
 modulate = Color( 0.109804, 0.160784, 0.227451, 1 )
 position = Vector2( 160.198, -5214.76 )
 scale = Vector2( 320, 10800 )
 mesh = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Platforms" type="Node2D" parent="."]
 script = ExtResource( 3 )
 
 [node name="Ground" type="StaticBody2D" parent="Platforms"]
-position = Vector2( 159.823, 175.177 )
+position = Vector2( 165.073, 259.927 )
 collision_layer = 9
 collision_mask = 9
 physics_material_override = SubResource( 2 )
@@ -79,7 +82,7 @@ scale = Vector2( 320, 10 )
 shape = SubResource( 4 )
 
 [node name="firstPlatform" type="StaticBody2D" parent="Platforms"]
-position = Vector2( 40, 130 )
+position = Vector2( 40, 234.5 )
 collision_layer = 9
 collision_mask = 9
 physics_material_override = SubResource( 5 )
@@ -95,43 +98,15 @@ mesh = SubResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/firstPlatform"]
 shape = SubResource( 6 )
 
-[node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 120, 100 )
-collision_layer = 3
-collision_mask = 7
-script = ExtResource( 2 )
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Player"]
-scale = Vector2( 8, 12 )
-mesh = SubResource( 7 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="PlayerCollider" type="CollisionShape2D" parent="Player"]
-shape = SubResource( 8 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Ground_check_area" type="Area2D" parent="Player"]
-position = Vector2( 0, 6 )
-collision_layer = 8
-collision_mask = 8
-script = ExtResource( 7 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Ground_check" type="CollisionShape2D" parent="Player/Ground_check_area"]
-shape = SubResource( 10 )
+[node name="Player" parent="." instance=ExtResource( 7 )]
+position = Vector2( 108.257, 123.514 )
 
 [node name="Input" type="Label" parent="."]
 margin_left = 250.565
 margin_top = 50.0
 margin_right = 270.0
 margin_bottom = 50.0
-script = SubResource( 9 )
+script = SubResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -160,5 +135,5 @@ __meta__ = {
 wait_time = 0.5
 one_shot = true
 autostart = true
-script = ExtResource( 6 )
-enemy_prefab = ExtResource( 5 )
+script = ExtResource( 2 )
+enemy_prefab = ExtResource( 6 )

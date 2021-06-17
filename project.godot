@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="BulletHell_Prototype"
-run/main_scene="res://Scenes/Hello_world.tscn"
+run/main_scene="res://Scenes/MainScene.tscn"
 config/icon="res://icon.png"
 
 [display]

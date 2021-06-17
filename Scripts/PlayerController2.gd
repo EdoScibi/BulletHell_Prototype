@@ -5,6 +5,7 @@ const MAX_SPEED = 300
 const PLAYER_FRICTION = 25
 const GRAVITY = 1000
 const JUMP_SPEED = -300
+const AIR_CONTROL_MULTI = 0.5
 
 var velocity = Vector2.ZERO
 var gravity_Vector = Vector2(0,GRAVITY)
@@ -12,6 +13,7 @@ var horizontal_input
 var is_jumping = false
 var jump_input
 var im_on_ground = false
+
 
 #Get GROUNDCHECK
 func im_on_ground() -> bool :
@@ -36,7 +38,7 @@ func _physics_process(delta):
 		is_jumping = false
 	#AIR CONTROL
 	if is_jumping :
-		horizontal_input /= 2
+		horizontal_input *= AIR_CONTROL_MULTI
 	
 	#MOVEMENT
 	if horizontal_input != 0 :
