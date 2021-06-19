@@ -13,8 +13,11 @@ var horizontal_input
 var is_jumping = false
 var jump_input
 var im_on_ground = false
+
 onready var GC_area = get_node("Ground_check_area")
 onready var player_sprite = get_node("Sprite")
+onready var mainScene = get_node("..")
+onready var viewport_size = mainScene.get_viewport().get_visible_rect().size
 
 func _physics_process(delta):
 	
@@ -39,9 +42,16 @@ func _physics_process(delta):
 	if horizontal_input != 0 :
 		velocity.x += horizontal_input * ACCELERATION
 		velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
+	
 	#APPLY FRICTION IF NOT JUMPING
 	elif !is_jumping :
 		velocity = velocity.move_toward(Vector2(0, velocity.y), PLAYER_FRICTION)
+	
+	#MOVEMENT RESULT
+	velocity.y += GRAVITY * delta
+	velocity = move_and_slide(velocity, Vector2.UP)
+
+func _process(delta):
 	
 	#FLIP SPRITE
 	if horizontal_input>0 :
@@ -49,9 +59,9 @@ func _physics_process(delta):
 	elif horizontal_input<0 :
 		player_sprite.flip_h = true
 	
-	#MOVEMENT RESULT
-	velocity.y += GRAVITY * delta
-	velocity = move_and_slide(velocity, Vector2.UP)
+	#LOCK X IN VIEWPORT
+	transform.origin.x = clamp(transform.origin.x, 8, viewport_size.x - 8)
+
 
 #Get GROUNDCHECK
 func im_on_ground() -> bool :

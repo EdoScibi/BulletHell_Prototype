@@ -4,6 +4,7 @@ export(PackedScene) var enemy_prefab = null
 
 export var timeToNextSpawn = 2
 
+
 onready var timer = get_node("SpawnerTimer")
 
 func _ready():
