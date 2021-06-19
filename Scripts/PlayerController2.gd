@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
-const ACCELERATION = 35
+const ACCELERATION = 50 #was 35
 const MAX_SPEED = 300
-const PLAYER_FRICTION = 25
+const PLAYER_FRICTION = 50 #was 25
 const GRAVITY = 1000
 const JUMP_SPEED = -300
 const AIR_CONTROL_MULTI = 0.5
@@ -14,12 +14,7 @@ var is_jumping = false
 var jump_input
 var im_on_ground = false
 onready var GC_area = get_node("Ground_check_area")
-
-#Get GROUNDCHECK
-func im_on_ground() -> bool :
-	var on_ground = GC_area.player_on_ground
-#	print(on_ground)
-	return on_ground
+onready var player_sprite = get_node("Sprite")
 
 func _physics_process(delta):
 	
@@ -47,7 +42,19 @@ func _physics_process(delta):
 	#APPLY FRICTION IF NOT JUMPING
 	elif !is_jumping :
 		velocity = velocity.move_toward(Vector2(0, velocity.y), PLAYER_FRICTION)
-
+	
+	#FLIP SPRITE
+	if horizontal_input>0 :
+		player_sprite.flip_h = false
+	elif horizontal_input<0 :
+		player_sprite.flip_h = true
+	
 	#MOVEMENT RESULT
 	velocity.y += GRAVITY * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
+
+#Get GROUNDCHECK
+func im_on_ground() -> bool :
+	var on_ground = GC_area.player_on_ground
+#	print(on_ground)
+	return on_ground

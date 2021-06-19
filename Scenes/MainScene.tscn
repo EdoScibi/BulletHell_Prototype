@@ -113,6 +113,7 @@ shape = SubResource( 6 )
 position = Vector2( 108.257, 123.514 )
 
 [node name="Input" type="Label" parent="."]
+visible = false
 margin_left = 250.565
 margin_top = 50.0
 margin_right = 270.0
@@ -123,6 +124,7 @@ __meta__ = {
 }
 
 [node name="Speed" type="Label" parent="."]
+visible = false
 margin_left = 150.0
 margin_top = 50.0
 margin_right = 170.0
@@ -133,6 +135,7 @@ __meta__ = {
 }
 
 [node name="isJumping" type="Label" parent="."]
+visible = false
 margin_left = 31.1132
 margin_top = 41.2039
 margin_right = 71.1132
