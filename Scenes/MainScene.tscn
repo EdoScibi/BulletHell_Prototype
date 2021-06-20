@@ -10,7 +10,7 @@
 
 [sub_resource type="QuadMesh" id=1]
 
-[sub_resource type="GDScript" id=7]
+[sub_resource type="GDScript" id=2]
 script/source = "extends Label
 
 var playerInput
@@ -67,7 +67,7 @@ margin_left = 250.565
 margin_top = 50.0
 margin_right = 270.0
 margin_bottom = 50.0
-script = SubResource( 7 )
+script = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

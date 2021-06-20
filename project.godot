@@ -24,6 +24,10 @@ config/name="BulletHell_Prototype"
 run/main_scene="res://Scenes/MainScene.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Scripts/Global.gd"
+
 [display]
 
 window/size/width=320

@@ -12,7 +12,6 @@ var gravity_Vector = Vector2(0,GRAVITY)
 var horizontal_input
 var is_jumping = false
 var jump_input
-var im_on_ground = false
 
 onready var GC_area = get_node("Ground_check_area")
 onready var player_sprite = get_node("Sprite")
@@ -26,13 +25,13 @@ func _physics_process(delta):
 	horizontal_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	
 	#UPDATE GROUNDCHECK
-	im_on_ground()
+	var is_on_ground = im_on_ground()
 	
 	#JUMPING
-	if jump_input and im_on_ground() :
+	if jump_input and is_on_ground :
 		is_jumping = true
 		velocity.y = JUMP_SPEED
-	elif is_jumping and im_on_ground() :
+	elif is_jumping and is_on_ground :
 		is_jumping = false
 	#AIR CONTROL
 	if is_jumping :
@@ -52,7 +51,7 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	
-func _process(delta):
+func _process(_delta):
 	
 	#FLIP SPRITE
 	if horizontal_input>0 :

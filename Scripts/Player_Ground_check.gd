@@ -6,10 +6,10 @@ func _ready():
 	connect("body_entered", self, "on_touch_down")
 	connect("body_exited", self, "on_lift")
 
-func on_touch_down(ground) :
+func on_touch_down(_ground) :
 	player_on_ground = true
 	print("player_on_ground=" , player_on_ground)
 
-func on_lift(ground) :
+func on_lift(_ground) :
 	player_on_ground = false
 	print("player_on_ground=" , player_on_ground)
