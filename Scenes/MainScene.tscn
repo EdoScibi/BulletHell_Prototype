@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/speedLabel.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/SpawnerTimer.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Platforms.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/isJumpingLabel.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Ground_tileset.tres" type="TileSet" id=5]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=6]
@@ -10,20 +9,6 @@
 [ext_resource path="res://Assets/BackGround_tileset.tres" type="TileSet" id=8]
 
 [sub_resource type="QuadMesh" id=1]
-
-[sub_resource type="PhysicsMaterial" id=2]
-friction = 5.0
-
-[sub_resource type="QuadMesh" id=3]
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 0.500665, 0.512342 )
-
-[sub_resource type="PhysicsMaterial" id=5]
-friction = 5.0
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 40.0234, 2.51563 )
 
 [sub_resource type="GDScript" id=7]
 script/source = "extends Label
@@ -72,45 +57,6 @@ mesh = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="Platforms" type="Node2D" parent="."]
-visible = false
-script = ExtResource( 3 )
-
-[node name="Ground" type="StaticBody2D" parent="Platforms"]
-position = Vector2( 165.073, 259.927 )
-collision_layer = 9
-collision_mask = 9
-physics_material_override = SubResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Platforms/Ground"]
-modulate = Color( 0, 0, 0, 1 )
-scale = Vector2( 320, 10 )
-mesh = SubResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ground"]
-scale = Vector2( 320, 10 )
-shape = SubResource( 4 )
-
-[node name="firstPlatform" type="StaticBody2D" parent="Platforms"]
-position = Vector2( 40, 234.5 )
-collision_layer = 9
-collision_mask = 9
-physics_material_override = SubResource( 5 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Platforms/firstPlatform"]
-modulate = Color( 0, 0, 0, 1 )
-scale = Vector2( 80, 5 )
-mesh = SubResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/firstPlatform"]
-shape = SubResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 108.257, 123.514 )

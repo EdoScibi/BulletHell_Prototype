@@ -50,7 +50,8 @@ func _physics_process(delta):
 	#MOVEMENT RESULT
 	velocity.y += GRAVITY * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
-
+	
+	
 func _process(delta):
 	
 	#FLIP SPRITE
@@ -62,9 +63,7 @@ func _process(delta):
 	#LOCK X IN VIEWPORT
 	transform.origin.x = clamp(transform.origin.x, 8, viewport_size.x - 8)
 
-
 #Get GROUNDCHECK
 func im_on_ground() -> bool :
 	var on_ground = GC_area.player_on_ground
-#	print(on_ground)
 	return on_ground
