@@ -15,8 +15,6 @@ var jump_input
 
 onready var GC_area = get_node("Ground_check_area")
 onready var player_sprite = get_node("Sprite")
-onready var mainScene = get_node("..")
-onready var viewport_size = mainScene.get_viewport().get_visible_rect().size
 
 func _physics_process(delta):
 	
@@ -60,7 +58,8 @@ func _process(_delta):
 		player_sprite.flip_h = true
 	
 	#LOCK X IN VIEWPORT
-	transform.origin.x = clamp(transform.origin.x, 8, viewport_size.x - 8)
+	transform.origin.x = clamp(transform.origin.x, Global.left_playground_wall_pos + 8, Global.right_playground_wall_pos - 8)
+
 
 #Get GROUNDCHECK
 func im_on_ground() -> bool :
