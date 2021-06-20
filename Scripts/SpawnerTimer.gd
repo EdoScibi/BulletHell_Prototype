@@ -9,7 +9,7 @@ func _process(_delta):
 func spawn_Enemy() :
 	if is_stopped() :
 		var enemy = enemy_prefab.instance()
-		enemy.init(get_spawn_y())
+		enemy.set_start_position(get_spawn_y())
 		add_child(enemy)
 		start()
 		

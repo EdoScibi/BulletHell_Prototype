@@ -7,8 +7,8 @@ var direction = Vector2(rand_range(-0.25,0.25),rand_range(0.35,1))
 
 onready var mainScene = get_node("..")
 
-func init(camera_y: float):
-	self.start_y = camera_y
+func set_start_position(start_y: float):
+	self.start_y = start_y
 
 func _ready():
 	connect("body_entered", self, "self_destroy")
