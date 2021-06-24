@@ -48,7 +48,6 @@ func _physics_process(delta):
 	velocity.y += GRAVITY * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
-	
 func _process(_delta):
 	
 	#FLIP SPRITE
@@ -59,7 +58,6 @@ func _process(_delta):
 	
 	#LOCK X IN VIEWPORT
 	transform.origin.x = clamp(transform.origin.x, Global.left_playground_wall_pos + 8, Global.right_playground_wall_pos - 8)
-
 
 #Get GROUNDCHECK
 func im_on_ground() -> bool :

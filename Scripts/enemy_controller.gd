@@ -15,7 +15,7 @@ func _ready():
 	
 	var viewport_width = mainScene.get_viewport().get_visible_rect().size.x
 	
-	transform.origin = Vector2(rand_range(0, viewport_width), start_y) 
+	transform.origin = Vector2(rand_range(Global.left_playground_wall_pos, Global.right_playground_wall_pos), start_y) 
 
 func self_destroy(body) :
 	queue_free()
