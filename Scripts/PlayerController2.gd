@@ -3,9 +3,10 @@ extends KinematicBody2D
 const ACCELERATION = 50 #was 35
 const MAX_SPEED = 300
 const PLAYER_FRICTION = 50 #was 25
+const PLAYER_AIR_FRICTION = 9
 const GRAVITY = 1000
 const JUMP_SPEED = -300
-const AIR_CONTROL_MULTI = 0.5
+const AIR_CONTROL_MULTI = 0.2
 
 var velocity = Vector2.ZERO
 var gravity_Vector = Vector2(0,GRAVITY)
@@ -39,10 +40,14 @@ func _physics_process(delta):
 	if horizontal_input != 0 :
 		velocity.x += horizontal_input * ACCELERATION
 		velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
-	
-	#APPLY FRICTION IF NOT JUMPING
+
+	#APPLY FRICTION
 	elif !is_jumping :
 		velocity = velocity.move_toward(Vector2(0, velocity.y), PLAYER_FRICTION)
+	else :
+		if horizontal_input != 0 :
+			velocity = velocity.move_toward(Vector2(0, velocity.y), PLAYER_AIR_FRICTION / 2)
+		else : velocity = velocity.move_toward(Vector2(0, velocity.y), PLAYER_AIR_FRICTION)
 	
 	#MOVEMENT RESULT
 	velocity.y += GRAVITY * delta

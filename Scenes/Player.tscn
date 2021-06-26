@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Player_Ground_check.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/PlayerController2.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Player_sprite_edo.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Player_label.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.01488, 6.07784 )
@@ -43,7 +44,17 @@ shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-limit_left = 0
+limit_left = -320
 limit_right = 320
 limit_bottom = 180
 smoothing_enabled = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = -20.69
+margin_top = -27.0305
+margin_right = 19.31
+margin_bottom = -13.0305
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

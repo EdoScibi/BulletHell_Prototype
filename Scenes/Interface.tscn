@@ -8,20 +8,19 @@ __meta__ = {
 }
 
 [node name="LeftPanel" type="Panel" parent="."]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_top = -90.0
-margin_right = 80.0
-margin_bottom = 90.0
+margin_left = -320.0
+margin_top = -4820.0
+margin_right = -160.0
+margin_bottom = 180.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RightPanel" type="Panel" parent="."]
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -80.0
-margin_top = -90.0
-margin_bottom = 90.0
+margin_left = 160.0
+margin_top = -4820.0
+margin_right = 320.0
+margin_bottom = 180.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
