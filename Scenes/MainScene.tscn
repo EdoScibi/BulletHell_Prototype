@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Scripts/speedLabel.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Interface.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/SpawnerTimer.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/isJumpingLabel.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Interface.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Ground_tileset.tres" type="TileSet" id=5]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=7]
@@ -10,23 +10,12 @@
 
 [sub_resource type="QuadMesh" id=1]
 
-[sub_resource type="GDScript" id=2]
-script/source = "extends Label
-
-var playerInput
-
-func _ready():
-	
-	align = 1
-
-func _process(_delta):
-	
-	playerInput = str(get_node(\"../Player\").horizontal_input)
-
-	text = \"R/L Input\" + \"\\n\" + playerInput
-"
-
 [node name="MainScene" type="Node2D"]
+
+[node name="Interface" parent="." instance=ExtResource( 1 )]
+margin_right = 320.0
+margin_bottom = 180.0
+script = ExtResource( 3 )
 
 [node name="BackGroundTileMap" type="TileMap" parent="."]
 z_index = -1
@@ -60,39 +49,6 @@ __meta__ = {
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 108.257, 123.514 )
-
-[node name="Input" type="Label" parent="."]
-visible = false
-margin_left = 250.565
-margin_top = 50.0
-margin_right = 270.0
-margin_bottom = 50.0
-script = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Speed" type="Label" parent="."]
-visible = false
-margin_left = 150.0
-margin_top = 50.0
-margin_right = 170.0
-margin_bottom = 50.0
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="isJumping" type="Label" parent="."]
-visible = false
-margin_left = 31.1132
-margin_top = 41.2039
-margin_right = 71.1132
-margin_bottom = 55.2039
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="SpawnerTimer" type="Timer" parent="."]
 wait_time = 0.5
