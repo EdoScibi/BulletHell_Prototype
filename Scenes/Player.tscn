@@ -1,16 +1,16 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Player_Ground_check.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/PlayerController2.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/PlayerController.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Player_sprite_edo.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Player_label.gd" type="Script" id=4]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8.01488, 6.07784 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 4.52448
+height = 8.58757
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 4.13893
-height = 7.88544
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3.197, 8.00529 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 120.309, 100.928 )
@@ -26,7 +26,8 @@ __meta__ = {
 texture = ExtResource( 3 )
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 2 )
+position = Vector2( 0, 3.56 )
+rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="Ground_check_area" type="Area2D" parent="."]

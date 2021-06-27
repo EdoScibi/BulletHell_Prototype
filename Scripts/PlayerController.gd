@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 const ACCELERATION = 50 #was 35
-const MAX_SPEED = 300
+const MAX_SPEED = 280
 const PLAYER_FRICTION = 50 #was 25
 const PLAYER_AIR_FRICTION = 10
 const GRAVITY = 1000
@@ -27,7 +27,7 @@ func _physics_process(delta):
 	
 	#UPDATE GROUNDCHECK
 	var is_on_ground = im_on_ground()
-#	and is_on_ground 
+
 	#JUMPING
 	if jump_input :
 		if can_coyote_jump or is_on_ground:
@@ -50,9 +50,7 @@ func _physics_process(delta):
 	elif !is_jumping :
 		velocity = velocity.move_toward(Vector2(0, velocity.y), PLAYER_FRICTION)
 	else :
-		if horizontal_input != 0 :
-			velocity = velocity.move_toward(Vector2(0, velocity.y), PLAYER_AIR_FRICTION / 2)
-		else : velocity = velocity.move_toward(Vector2(0, velocity.y), PLAYER_AIR_FRICTION)
+		velocity = velocity.move_toward(Vector2(0, velocity.y), calcAirFriction())
 
 	#MOVEMENT RESULT
 	if !is_on_ground :
@@ -86,3 +84,11 @@ func stopcoyoteTime():
 	yield(get_tree().create_timer(COYOTE_TIME), "timeout")
 	can_coyote_jump = false
 	pass
+
+func calcAirFriction():
+	if horizontal_input == 0 :
+		return PLAYER_AIR_FRICTION
+	elif horizontal_input * velocity.x <= 0 :
+		return PLAYER_AIR_FRICTION
+	else :
+		return PLAYER_AIR_FRICTION * 0.5

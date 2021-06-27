@@ -3,4 +3,4 @@ extends Label
 onready var player_node = Global.Player_node
 
 func _process(delta):
-	text = str(player_node.can_coyote_jump)
+	text = str(player_node.velocity.x)
