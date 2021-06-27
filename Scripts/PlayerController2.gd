@@ -3,10 +3,11 @@ extends KinematicBody2D
 const ACCELERATION = 50 #was 35
 const MAX_SPEED = 300
 const PLAYER_FRICTION = 50 #was 25
-const PLAYER_AIR_FRICTION = 9
+const PLAYER_AIR_FRICTION = 10
 const GRAVITY = 1000
 const JUMP_SPEED = -300
 const AIR_CONTROL_MULTI = 0.2
+
 
 var velocity = Vector2.ZERO
 var gravity_Vector = Vector2(0,GRAVITY)
@@ -50,8 +51,12 @@ func _physics_process(delta):
 		else : velocity = velocity.move_toward(Vector2(0, velocity.y), PLAYER_AIR_FRICTION)
 	
 	#MOVEMENT RESULT
-	velocity.y += GRAVITY * delta
+	if !is_on_ground :
+		velocity.y += GRAVITY * delta
+	
+	
 	velocity = move_and_slide(velocity, Vector2.UP)
+	
 	
 func _process(_delta):
 	
@@ -68,3 +73,9 @@ func _process(_delta):
 func im_on_ground() -> bool :
 	var on_ground = GC_area.player_on_ground
 	return on_ground
+	
+#func coyoteTime():
+#	yield(get_tree().create_timer(COYOTE_TIME), "timeout")
+#	can_coyote_jump = false
+#	print (can_coyote_jump)
+#	pass

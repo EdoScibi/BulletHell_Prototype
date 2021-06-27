@@ -10,7 +10,7 @@ extents = Vector2( 8.01488, 6.07784 )
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 4.13893
-height = 7.55891
+height = 7.88544
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 120.309, 100.928 )

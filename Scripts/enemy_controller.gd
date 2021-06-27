@@ -23,4 +23,3 @@ func self_destroy(body) :
 func _physics_process(delta):
 	var final_vector = direction.normalized() * ENEMY_SPEED * delta
 	translate(final_vector)
-	
