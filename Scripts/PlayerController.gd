@@ -79,7 +79,10 @@ func _process(_delta):
 	transform.origin.x = clamp(transform.origin.x, Global.left_playground_wall_pos + 8, Global.right_playground_wall_pos - 8)
 
 func update_jumping_max_speed() -> float :
-	return velocity.x
+	if abs(velocity.x) > 200 :
+		return velocity.x
+	else :
+		return float(200)
 
 #Get GROUNDCHECK
 func im_on_ground() -> bool :
