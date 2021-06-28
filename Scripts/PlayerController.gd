@@ -4,7 +4,7 @@ const ACCELERATION = 50 #was 35
 const DEFAULT_MAX_SPEED = 280
 const PLAYER_FRICTION = 50 #was 25
 const PLAYER_AIR_FRICTION = 10
-const FRICTION_FOR_MAX_SPEED = .2
+const FRICTION_FOR_MAX_SPEED = .5
 const GRAVITY = 1000
 const JUMP_SPEED = -280
 const AIR_CONTROL_MULTI = 0.3
@@ -30,11 +30,6 @@ func _physics_process(delta):
 	#UPDATE GROUNDCHECK
 	var is_on_ground = im_on_ground()
 	
-	#AIR CONTROL
-	if is_jumping :
-		horizontal_input *= AIR_CONTROL_MULTI
-		max_speed -= FRICTION_FOR_MAX_SPEED
-		
 	#JUMPING
 	if jump_input :
 		if can_coyote_jump or is_on_ground:
@@ -45,6 +40,11 @@ func _physics_process(delta):
 	elif is_jumping and is_on_ground :
 		is_jumping = false
 
+#AIR CONTROL
+	if is_jumping :
+		horizontal_input *= AIR_CONTROL_MULTI
+		max_speed -= FRICTION_FOR_MAX_SPEED
+	
 	#MOVEMENT
 	if horizontal_input != 0 :
 		velocity.x += horizontal_input * ACCELERATION
@@ -79,7 +79,7 @@ func _process(_delta):
 	transform.origin.x = clamp(transform.origin.x, Global.left_playground_wall_pos + 8, Global.right_playground_wall_pos - 8)
 
 func update_jumping_max_speed() -> float :
-	return clamp(velocity.x, -200, 200)
+	return velocity.x
 
 #Get GROUNDCHECK
 func im_on_ground() -> bool :
