@@ -2,6 +2,7 @@ extends Area2D
 
 onready var player_node = Global.Player_node
 
+
 func _ready():
 	connect("body_entered", self, "_on_FinishLine_body_entered")
 
