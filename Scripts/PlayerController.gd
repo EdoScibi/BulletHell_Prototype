@@ -9,6 +9,7 @@ const GRAVITY = 1000
 const JUMP_SPEED = -280
 const AIR_CONTROL_MULTI = 0.3
 const COYOTE_TIME = 0.1
+const STARTING_POSITION = Vector2(20, 160)
 
 var max_speed = 280
 var can_coyote_jump = true
@@ -20,6 +21,7 @@ var jump_input
 
 onready var GroundCheck_area = get_node("Ground_check_area")
 onready var player_sprite = get_node("Sprite")
+
 
 func _physics_process(delta):
 	

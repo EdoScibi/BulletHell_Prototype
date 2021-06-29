@@ -50,6 +50,7 @@ limit_bottom = 180
 smoothing_enabled = true
 
 [node name="Label" type="Label" parent="."]
+visible = false
 margin_left = -20.69
 margin_top = -27.0305
 margin_right = 19.31
