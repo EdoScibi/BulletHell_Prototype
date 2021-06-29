@@ -35,7 +35,7 @@ func _physics_process(delta):
 		if can_coyote_jump or is_on_ground:
 			is_jumping = true
 			velocity.y = JUMP_SPEED
-			max_speed = update_jumping_max_speed()
+#			max_speed = update_jumping_max_speed()
 			can_coyote_jump = false
 	elif is_jumping and is_on_ground :
 		is_jumping = false
@@ -78,11 +78,11 @@ func _process(_delta):
 	#LOCK X IN VIEWPORT
 	transform.origin.x = clamp(transform.origin.x, Global.left_playground_wall_pos + 8, Global.right_playground_wall_pos - 8)
 
-func update_jumping_max_speed() -> float :
-	if abs(velocity.x) > 200 :
-		return velocity.x
-	else :
-		return float(200)
+#func update_jumping_max_speed() -> float :
+#	if abs(velocity.x) > 200 :
+#		return velocity.x
+#	else :
+#		return float(200)
 
 #Get GROUNDCHECK
 func im_on_ground() -> bool :
